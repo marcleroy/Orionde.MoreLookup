@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
 	<OutputType>Library</OutputType>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<Title>Linq Lookup extension</Title>
+	<Description>It's a Linq extension for Lookup</Description>
   </PropertyGroup>
 
 </Project>
