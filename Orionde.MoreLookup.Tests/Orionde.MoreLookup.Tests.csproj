@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OtherLookup\Orionde.MoreLookup.csproj" />
+    <ProjectReference Include="..\Orionde.MoreLookup\Orionde.MoreLookup.csproj" />
   </ItemGroup>
 
 </Project>
