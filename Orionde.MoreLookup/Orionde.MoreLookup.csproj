@@ -7,20 +7,37 @@
     <OutputType>Library</OutputType>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     
+    <!-- Generate XML documentation -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    
+    <!-- Code analysis -->
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsNotAsErrors>NU1701</WarningsNotAsErrors>
+    
     <!-- Package metadata -->
+    <PackageId>Orionde.MoreLookup</PackageId>
+    <Version>1.0.0</Version>
     <Title>Orionde.MoreLookup</Title>
-    <Description>A LINQ extension for enhanced Lookup capabilities.</Description>
+    <Description>A powerful LINQ extension library that enhances ILookup with additional operations like Union, Intersect, Except, Join, Zip, and more. Includes fluent builder pattern and support for custom comparers.</Description>
     <Authors>Marc Leroy</Authors>
     <Company>Orionde</Company>
+    <Product>Orionde.MoreLookup</Product>
     <RepositoryUrl>https://github.com/marcleroy/Orionde.MoreLookup</RepositoryUrl>
-    <PackageTags>LINQ;Lookup;Extensions</PackageTags>
+    <PackageTags>LINQ;Lookup;Extensions;ILookup;Dictionary;Collections;Grouping;Union;Intersect;Except;Join</PackageTags>
     <PackageProjectUrl>https://github.com/marcleroy/Orionde.MoreLookup</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <!-- <PackageIcon>icon.png</PackageIcon> -->
     <RepositoryType>git</RepositoryType>
     <Copyright>Copyright © 2024 Orionde</Copyright>
     <NeutralLanguage>en</NeutralLanguage>
     <Summary>A simple yet powerful LINQ extension for working with Lookup collections.</Summary>
+    
+    <!-- Additional metadata for better NuGet experience -->
+    <PackageReleaseNotes>Initial release with comprehensive ILookup extensions</PackageReleaseNotes>
+    <MinClientVersion>3.3.0</MinClientVersion>
   </PropertyGroup>
 
   <ItemGroup>

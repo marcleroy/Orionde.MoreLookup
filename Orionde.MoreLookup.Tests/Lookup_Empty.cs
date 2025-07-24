@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Machine.Specifications;
+using Xunit;
 using Orionde.MoreLookup;
+using FluentAssertions;
 
 namespace Tests
 {
-    [Subject("Lookup.Empty")]
-    public class When_requesting_empty_lookup
+    public class LookupEmptyTests
     {
-        Because of = () =>
-            lookup = Lookup.Empty<int, string>();
+        [Fact]
+        public void When_requesting_empty_lookup_should_be_empty_and_singleton()
+        {
+            // Act
+            var lookup = Lookup.Empty<int, string>();
 
-        It should_be_empty = () =>
-            lookup.ShouldBeEmpty();
-
-        It should_be_created_once_per_constructed_type = () =>
-            ReferenceEquals(lookup, Lookup.Empty<int, string>()).ShouldBeTrue();
-
-        private static ILookup<int, string> lookup;
+            // Assert
+            lookup.Should().BeEmpty();
+            ReferenceEquals(lookup, Lookup.Empty<int, string>()).Should().BeTrue();
+        }
     }
 }

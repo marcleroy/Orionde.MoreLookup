@@ -1,112 +1,93 @@
 using System.Linq;
 using System.Collections.Generic;
 using System;
-using Machine.Specifications;
+using Xunit;
 using Orionde.MoreLookup;
 using Tests.Utils;
+using FluentAssertions;
 
 namespace Tests
 {
-    [Subject("ILookup.Except")]
-    public class When_creating_lookups_difference
+    public class LookupExceptTests
     {
-        Establish context = () =>
-            lookup = Lookup.Builder
+        [Fact]
+        public void When_creating_lookups_difference_should_create_lookup_with_difference()
+        {
+            // Arrange
+            var lookup = Lookup.Builder
                 .WithKey(0, new[] { "a", "b", "a" })
                 .WithKey(1, new[] { "c", "d" })
                 .WithKey(2, new[] { "e", "f", "f" }).Build();
 
-        Because of = () =>
-            difference = lookup.Except(Lookup.Builder
+            // Act
+            var difference = lookup.Except(Lookup.Builder
                 .WithKey(2, new[] { "f", "g", "e" })
                 .WithKey(1, new[] { "c", "b" })
                 .WithKey(3, new[] { "i", "j" }).Build());
 
-        It should_create_lookup_with_keys_from_difference = () =>
-            difference.Count.ShouldEqual(2);
-
-        It should_have_only_difference_of_IEnumerables_inside = () =>
-        {
+            // Assert
+            difference.Count.Should().Be(2);
             difference[0].ShouldContainExactly("a", "b");
             difference[1].ShouldContainExactly("d");
-        };
+        }
         
-        private static ILookup<int, string> lookup, difference;
-    }
-    
-    [Subject("ILookup.Except")]
-    public class When_creating_lookups_difference_with_key_comparer
-    {
-        Establish context = () =>
-            lookup = Lookup.Builder
+        [Fact]
+        public void When_creating_lookups_difference_with_key_comparer_should_respect_comparer()
+        {
+            // Arrange
+            var lookup = Lookup.Builder
                 .WithKey("one", new[] { "a", "c" })
                 .WithKey("ONE", new[] { "b" }).Build();
 
-        Because of = () =>
-            difference = lookup.Except(Lookup.Builder
+            // Act
+            var difference = lookup.Except(Lookup.Builder
                 .WithKey("two", new[] { "d", "c" })
                 .WithKey("TWO", new[] { "b" }).Build(), keyComparer: new StringLengthComparer());
 
-        It should_create_lookup_with_keys_from_difference_respecting_comparer = () =>
-            difference.Count.ShouldEqual(1);
-
-        It should_have_only_difference_of_IEnumerables_inside_respecting_comparer = () =>
+            // Assert
+            difference.Count.Should().Be(1);
             difference["one"].ShouldContainExactly("a");
-        
-        private static ILookup<string, string> lookup;
-        private static ILookup<string, string> difference;
-    }
+        }
 
-    [Subject("ILookup.Except")]
-    public class When_creating_lookups_difference_with_value_comparer
-    {
-        Establish context = () =>
-            lookup = Lookup.Builder
+        [Fact]
+        public void When_creating_lookups_difference_with_value_comparer_should_respect_comparer()
+        {
+            // Arrange
+            var lookup = Lookup.Builder
                 .WithKey(0, new[] { "one", "three" }).Build();
 
-        Because of = () =>
-            difference = lookup.Except(Lookup.Builder
+            // Act
+            var difference = lookup.Except(Lookup.Builder
                 .WithKey(0, new[] { "two", "four" }).Build(), valueComparer: new StringLengthComparer());
 
-        It should_have_only_difference_of_IEnumerables_inside_respecting_comparer = () =>
+            // Assert
             difference[0].ShouldContainExactly("three");
+        }
 
-        private static ILookup<int, string> lookup, difference;
-    }
+        [Fact]
+        public void When_creating_difference_of_null_and_lookup_should_throw_ArgumentNullException()
+        {
+            // Arrange
+            ILookup<int, string> lookup = null;
 
-    [Subject("ILookup.Except")]
-    public class When_creating_difference_of_null_and_lookup
-    {
-        Establish context = () =>
-            lookup = null;
-
-        Because of = () =>
-            exception = Catch.Exception(() => lookup.Except(Lookup.Builder
+            // Act & Assert
+            var exception = Assert.Throws<ArgumentNullException>(() => lookup.Except(Lookup.Builder
                 .WithKey(2, new[] { "e", "d" })
                 .WithKey(3, new[] { "f", "g" }).Build()));
+            exception.Should().BeOfType<ArgumentNullException>();
+        }
 
-        It should_throw_ArgumentNullException = () =>
-            exception.ShouldBeOfType<ArgumentNullException>();
-
-        private static ILookup<int, string> lookup;
-        private static Exception exception;
-    }
-
-    [Subject("ILookup.Except")]
-    public class When_creating_difference_of_lookup_and_null
-    {
-        Establish context = () =>
-            lookup = Lookup.Builder
+        [Fact]
+        public void When_creating_difference_of_lookup_and_null_should_throw_ArgumentNullException()
+        {
+            // Arrange
+            var lookup = Lookup.Builder
                 .WithKey(1, new[] { "a", "b" })
                 .WithKey(2, new[] { "c", "d" }).Build();
 
-        Because of = () =>
-            exception = Catch.Exception(() => lookup.Except(null));
-
-        It should_throw_ArgumentNullException = () =>
-            exception.ShouldBeOfType<ArgumentNullException>();
-
-        private static ILookup<int, string> lookup;
-        private static Exception exception;
+            // Act & Assert
+            var exception = Assert.Throws<ArgumentNullException>(() => lookup.Except(null));
+            exception.Should().BeOfType<ArgumentNullException>();
+        }
     }
 }

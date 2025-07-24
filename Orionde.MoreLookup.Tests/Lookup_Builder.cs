@@ -1,144 +1,112 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Machine.Specifications;
+using Xunit;
 using Orionde.MoreLookup;
 using Tests.Utils;
+using FluentAssertions;
 
 namespace Tests
 {
-    [Subject("Lookup.Builder")]
-    public class When_building_lookup
+    public class LookupBuilderTests
     {
-        Because of = () =>
-            lookup = Lookup.Builder
+        [Fact]
+        public void When_building_lookup_should_handle_all_scenarios()
+        {
+            // Act
+            var lookup = Lookup.Builder
                 .WithKey(1, new[] { "a", "b" })
                 .WithKey(1, new[] { "e", "f" })
                 .WithKey(2, new[] { "c", "d", "d" })
                 .WithKey(3, null)
                 .Build();
 
-        It should_be_enumerable_and_contain_two_keys = () =>
+            // Assert
             lookup.Select(x => x.Key).ShouldContainExactly(1, 2);
-
-        It should_keep_the_latest_definition_for_key = () =>
             lookup[1].ShouldContainExactly("e", "f");
-
-        It should_keep_provided_collections_unchanged = () =>
             lookup[2].ShouldContainExactly("c", "d", "d");
+            lookup[3].Should().BeEmpty();
+            lookup[4].Should().BeEmpty();
+            lookup.Count.Should().Be(2);
+            lookup.Contains(1).Should().BeTrue();
+            lookup.Contains(2).Should().BeTrue();
+            lookup.Contains(3).Should().BeFalse();
+            lookup.Contains(4).Should().BeFalse();
+        }
 
-        It should_ignore_null_collections_and_treat_as_undefined = () =>
-            lookup[3].ShouldBeEmpty();
-
-        It should_return_empty_collections_for_unknown_keys = () =>
-            lookup[4].ShouldBeEmpty();
-
-        It should_provide_proper_count = () =>
-            lookup.Count.ShouldEqual(2);
-
-        It should_properly_indicate_key_existence = () =>
+        [Fact]
+        public void When_building_lookup_with_null_key_should_handle_null_properly()
         {
-            lookup.Contains(1).ShouldBeTrue();
-            lookup.Contains(2).ShouldBeTrue();
-            lookup.Contains(3).ShouldBeFalse();
-            lookup.Contains(4).ShouldBeFalse();
-        };
-
-        private static ILookup<int, string> lookup;
-    }
-
-    [Subject("Lookup.Builder")]
-    public class When_building_lookup_with_null_key
-    {
-        Because of = () =>
-            lookup = Lookup.Builder
+            // Act
+            var lookup = Lookup.Builder
                 .WithKey("not null", new[] { "a", "b" })
                 .WithKey(null, new[] { "e", "f" })
                 .Build();
 
-        It should_be_enumerable_and_contain_two_keys = () =>
+            // Assert
             lookup.Select(x => x.Key).ShouldContainExactly("not null", null);
-
-        It should_properly_return_values_for_null_key = () =>
             lookup[null].ShouldContainExactly("e", "f");
+            lookup.Count.Should().Be(2);
+            lookup.Contains(null).Should().BeTrue();
+        }
 
-        It should_provide_proper_count = () =>
-            lookup.Count.ShouldEqual(2);
-
-        It should_properly_indicate_null_key_existence = () =>
-            lookup.Contains(null).ShouldBeTrue();
-
-        private static ILookup<string, string> lookup;
-    }
-
-    [Subject("Lookup.Builder")]
-    public class When_modifying_source_collection_after_lookup_was_built
-    {
-        Establish context = () =>
+        [Fact]
+        public void When_modifying_source_collection_after_lookup_was_built_should_not_affect_lookup()
         {
-            source = new List<string>() { "a", "b" };
-
-            lookup = Lookup.Builder
+            // Arrange
+            var source = new List<string>() { "a", "b" };
+            var lookup = Lookup.Builder
                 .WithKey("key", source)
                 .Build();
-        };
 
-        Because of = () =>
+            // Act
             source.Add("c");
 
-        It should_not_be_dependent_upon_source_collection_modifications = () =>
+            // Assert
             lookup["key"].ShouldContainExactly("a", "b");
+        }
 
-        private static ILookup<string, string> lookup;
-        private static List<string> source;
-    }
-
-    [Subject("Lookup.Builder")]
-    public class When_building_lookup_with_custom_comparer
-    {
-        Because of = () =>
-            lookup = Lookup.Builder
+        [Fact]
+        public void When_building_lookup_with_custom_comparer_should_respect_comparer()
+        {
+            // Act
+            var lookup = Lookup.Builder
                 .WithComparer(new StringLengthComparer())
                 .WithKey("one", new[] { "a", "b" })
                 .WithKey("two", new[] { "e", "f" })
                 .WithKey("three", new[] { "c", "d", "d" })
                 .Build();
 
-        It should_be_enumerable_and_contain_two_keys_respecting_comparer = () =>
+            // Assert
             lookup.Select(x => x.Key).ShouldContainExactly("one", "three");
-
-        It should_keep_the_latest_definition_for_key_respecting_comparer = () =>
             lookup["one"].ShouldContainExactly("e", "f");
+            lookup["two"].Should().BeSameAs(lookup["one"]);
+            lookup["abc"].Should().BeSameAs(lookup["one"]);
+            lookup.Count.Should().Be(2);
+            lookup.Contains("one").Should().BeTrue();
+            lookup.Contains("two").Should().BeTrue();
+            lookup.Contains("abc").Should().BeTrue();
+            lookup.Contains("four").Should().BeFalse();
+        }
 
-        It should_use_comparer_to_look_for_values = () =>
+        [Fact]
+        public void When_building_lookup_with_custom_comparer_that_handles_nulls_should_work_properly()
         {
-            lookup["two"].ShouldBeTheSameAs(lookup["one"]);
-            lookup["abc"].ShouldBeTheSameAs(lookup["one"]);
-        };
-
-        It should_provide_proper_count_respecting_comparer = () =>
-            lookup.Count.ShouldEqual(2);
-
-        It should_properly_indicate_key_existence_respecting_comparer = () =>
-        {
-            lookup.Contains("one").ShouldBeTrue();
-            lookup.Contains("two").ShouldBeTrue();
-            lookup.Contains("abc").ShouldBeTrue();
-            lookup.Contains("four").ShouldBeFalse();
-        };
-
-        private static ILookup<string, string> lookup;
-    }
-
-    [Subject("Lookup.Builder")]
-    public class When_building_lookup_with_custom_comparer_that_does_magic_with_nulls
-    {
-        Because of = () =>
-            lookup = Lookup.Builder
+            // Act
+            var lookup = Lookup.Builder
                 .WithComparer(new StringLengthComparerWithStringifiedNull())
                 .WithKey("", new[] { "a", "b" })
                 .WithKey(null, new[] { "c", "d" })
                 .Build();
+
+            // Assert
+            lookup.Select(x => x.Key).ShouldContainExactly("");
+            lookup[""].ShouldContainExactly("c", "d");
+            lookup[null].Should().BeSameAs(lookup[""]);
+            lookup.Count.Should().Be(1);
+            lookup.Contains("").Should().BeTrue();
+            lookup.Contains(null).Should().BeTrue();
+        }
 
         private class StringLengthComparerWithStringifiedNull : IEqualityComparer<string>
         {
@@ -157,25 +125,5 @@ namespace Tests
                 return StringifyNullIfNeeded(obj).Length;
             }
         }
-
-        It should_be_enumerable_and_contain_one_key_respecting_comparer = () =>
-            lookup.Select(x => x.Key).ShouldContainExactly("");
-
-        It should_keep_the_latest_definition_for_key_respecting_comparer = () =>
-            lookup[""].ShouldContainExactly("c", "d");
-
-        It should_use_comparer_to_look_for_values = () =>
-            lookup[null].ShouldBeTheSameAs(lookup[""]);
-
-        It should_provide_proper_count_respecting_comparer = () =>
-            lookup.Count.ShouldEqual(1);
-
-        It should_properly_indicate_key_existence_respecting_comparer = () =>
-        {
-            lookup.Contains("").ShouldBeTrue();
-            lookup.Contains(null).ShouldBeTrue();
-        };
-
-        private static ILookup<string, string> lookup;
     }
 }

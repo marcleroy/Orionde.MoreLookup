@@ -1,109 +1,92 @@
 using System.Linq;
 using System.Collections.Generic;
 using System;
-using Machine.Specifications;
+using Xunit;
 using Orionde.MoreLookup;
 using Tests.Utils;
+using FluentAssertions;
 
 namespace Tests
 {
-    [Subject("ILookup.Intersect")]
-    public class When_intersecting_lookups
+    public class LookupIntersectTests
     {
-        Establish context = () =>
-            lookup = Lookup.Builder
+        [Fact]
+        public void When_intersecting_lookups_should_create_lookup_with_intersection()
+        {
+            // Arrange
+            var lookup = Lookup.Builder
                 .WithKey(0, new[] { "a", "b" })
                 .WithKey(1, new[] { "c", "d" })
                 .WithKey(2, new[] { "e", "f", "f" }).Build();
 
-        Because of = () =>
-            intersection = lookup.Intersect(Lookup.Builder
+            // Act
+            var intersection = lookup.Intersect(Lookup.Builder
                 .WithKey(2, new[] { "f", "g", "h" })
                 .WithKey(1, new[] { "a", "b" })
                 .WithKey(3, new[] { "i", "j" }).Build());
 
-        It should_create_lookup_with_keys_from_intersection = () =>
-            intersection.Count.ShouldEqual(1);
-
-        It should_have_only_intersection_of_IEnumerables_inside = () =>
+            // Assert
+            intersection.Count.Should().Be(1);
             intersection[2].ShouldContainExactly("f");
-        
-        private static ILookup<int, string> lookup, intersection;
-    }
+        }
 
-    [Subject("ILookup.Intersect")]
-    public class When_intersecting_lookups_with_key_comparer
-    {
-        Establish context = () =>
-            lookup = Lookup.Builder
+        [Fact]
+        public void When_intersecting_lookups_with_key_comparer_should_respect_comparer()
+        {
+            // Arrange
+            var lookup = Lookup.Builder
                 .WithKey("one", new[] { "a", "b" })
                 .WithKey("ONE", new[] { "c" }).Build();
 
-        Because of = () =>
-            intersection = lookup.Intersect(Lookup.Builder
+            // Act
+            var intersection = lookup.Intersect(Lookup.Builder
                 .WithKey("two", new[] { "b", "d" })
                 .WithKey("TWO", new[] { "c" }).Build(), keyComparer: new StringLengthComparer());
 
-        It should_create_lookup_with_keys_from_intersection_respecting_comparer = () =>
-            intersection.Count.ShouldEqual(1);
-
-        It should_have_only_intersection_of_IEnumerables_inside_respecting_comparer = () =>
+            // Assert
+            intersection.Count.Should().Be(1);
             intersection["one"].ShouldContainExactly("b", "c");
-        
-        private static ILookup<string, string> lookup;
-        private static ILookup<string, string> intersection;
-    }
+        }
 
-    [Subject("ILookup.Intersect")]
-    public class When_intersecting_lookups_with_value_comparer
-    {
-        Establish context = () =>
-            lookup = Lookup.Builder
+        [Fact]
+        public void When_intersecting_lookups_with_value_comparer_should_respect_comparer()
+        {
+            // Arrange
+            var lookup = Lookup.Builder
                 .WithKey(0, new[] { "one", "three" }).Build();
 
-        Because of = () =>
-            intersection = lookup.Intersect(Lookup.Builder
+            // Act
+            var intersection = lookup.Intersect(Lookup.Builder
                 .WithKey(0, new[] { "two", "four" }).Build(), valueComparer: new StringLengthComparer());
 
-        It should_have_only_intersection_of_IEnumerables_inside_respecting_comparer = () =>
+            // Assert
             intersection[0].ShouldContainExactly("one");
+        }
 
-        private static ILookup<int, string> lookup, intersection;
-    }
+        [Fact]
+        public void When_intersecting_null_with_lookup_should_throw_ArgumentNullException()
+        {
+            // Arrange
+            ILookup<int, string> lookup = null;
 
-    [Subject("ILookup.Intersect")]
-    public class When_intersecting_null_with_lookup
-    {
-        Establish context = () =>
-            lookup = null;
-
-        Because of = () =>
-            exception = Catch.Exception(() => lookup.Intersect(Lookup.Builder
+            // Act & Assert
+            var exception = Assert.Throws<ArgumentNullException>(() => lookup.Intersect(Lookup.Builder
                 .WithKey(2, new[] { "e", "d" })
                 .WithKey(3, new[] { "f", "g" }).Build()));
+            exception.Should().BeOfType<ArgumentNullException>();
+        }
 
-        It should_throw_ArgumentNullException = () =>
-            exception.ShouldBeOfType<ArgumentNullException>();
-
-        private static ILookup<int, string> lookup;
-        private static Exception exception;
-    }
-
-    [Subject("ILookup.Intersect")]
-    public class When_intersecting_lookup_with_null
-    {
-        Establish context = () =>
-            lookup = Lookup.Builder
+        [Fact]
+        public void When_intersecting_lookup_with_null_should_throw_ArgumentNullException()
+        {
+            // Arrange
+            var lookup = Lookup.Builder
                 .WithKey(1, new[] { "a", "b" })
                 .WithKey(2, new[] { "c", "d" }).Build();
 
-        Because of = () =>
-            exception = Catch.Exception(() => lookup.Intersect(null));
-
-        It should_throw_ArgumentNullException = () =>
-            exception.ShouldBeOfType<ArgumentNullException>();
-
-        private static ILookup<int, string> lookup;
-        private static Exception exception;
+            // Act & Assert
+            var exception = Assert.Throws<ArgumentNullException>(() => lookup.Intersect(null));
+            exception.Should().BeOfType<ArgumentNullException>();
+        }
     }
 }
