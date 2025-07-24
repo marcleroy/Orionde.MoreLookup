@@ -1,11 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-	<OutputType>Library</OutputType>
-	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	<Title>Linq Lookup extension</Title>
-	<Description>It's a Linq extension for Lookup</Description>
+    <!-- Target multiple frameworks -->
+    <TargetFrameworks>net48;net6.0;net7.0;net8.0;net9.0;netstandard2.0</TargetFrameworks>
+    
+    <OutputType>Library</OutputType>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    
+    <!-- Package metadata -->
+    <Title>Orionde.MoreLookup</Title>
+    <Description>A LINQ extension for enhanced Lookup capabilities.</Description>
+    <Authors>Marc Leroy</Authors>
+    <Company>Orionde</Company>
+    <RepositoryUrl>https://github.com/marcleroy/Orionde.MoreLookup</RepositoryUrl>
+    <PackageTags>LINQ;Lookup;Extensions</PackageTags>
+    <PackageProjectUrl>https://github.com/marcleroy/Orionde.MoreLookup</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <!-- <PackageIcon>icon.png</PackageIcon> -->
+    <RepositoryType>git</RepositoryType>
+    <Copyright>Copyright © 2024 Orionde</Copyright>
+    <NeutralLanguage>en</NeutralLanguage>
+    <Summary>A simple yet powerful LINQ extension for working with Lookup collections.</Summary>
   </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Specify files like the license and readme -->
+    <None Include="LICENSE.txt" Pack="true" PackagePath="" />
+    <None Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
 
 </Project>
