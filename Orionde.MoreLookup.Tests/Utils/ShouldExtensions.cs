@@ -1,15 +1,11 @@
-using System.Collections.Generic;
-using System.Linq;
-
 using FluentAssertions;
 
-namespace Tests.Utils
+namespace Tests.Utils;
+
+public static class ShouldExtensions
 {
-    public static class ShouldExtensions
+    public static void ShouldContainExactly<T>(this IEnumerable<T> actual, params T[] expected)
     {
-        public static void ShouldContainExactly<T>(this IEnumerable<T> actual, params T[] expected)
-        {
-            actual.Should().BeEquivalentTo(expected, options => options.WithStrictOrdering());
-        }
+        actual.Should().BeEquivalentTo(expected, options => options.WithStrictOrdering());
     }
 }

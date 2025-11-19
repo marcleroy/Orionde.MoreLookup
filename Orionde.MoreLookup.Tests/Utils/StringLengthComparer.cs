@@ -1,23 +1,24 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+namespace Tests.Utils;
 
-namespace Tests.Utils
+internal class StringLengthComparer : IEqualityComparer<string>
 {
-    internal class StringLengthComparer : IEqualityComparer<string>
+    public bool Equals(string x, string y)
     {
-        public bool Equals(string x, string y)
+        if (x == null && y == null)
         {
-            if (x == null && y == null)
-                return true;
-            if (x == null || y == null)
-                return false;
-            return x.Length == y.Length;
+            return true;
         }
 
-        public int GetHashCode(string obj)
+        if (x == null || y == null)
         {
-            return obj.Length;
+            return false;
         }
+
+        return x.Length == y.Length;
+    }
+
+    public int GetHashCode(string obj)
+    {
+        return obj.Length;
     }
 }

@@ -1,6 +1,7 @@
 # Orionde.MoreLookup
 
-A powerful LINQ extension library that enhances `ILookup<TKey, TValue>` with additional operations like Union, Intersect, Except, Join, Zip, and more.
+A powerful LINQ extension library that enhances `ILookup<TKey, TValue>` with additional operations like Union,
+Intersect, Except, Join, Zip, and more.
 
 ## Features
 
@@ -52,25 +53,30 @@ var transformed = lookup1.Select(value => value.ToUpper());
 ## Available Operations
 
 ### Set Operations
+
 - `Union(other)` - Combines lookups, merging values for common keys
 - `Intersect(other)` - Returns only values that exist in both lookups for common keys
 - `Except(other)` - Returns values from first lookup excluding those in second
 - `Concat(other)` - Concatenates all values for matching keys
 
 ### Transformations
+
 - `Select(selector)` - Projects each value using the selector function
 - `Where(predicate)` - Filters values based on the predicate
 - `OnEachKey(func)` - Applies a transformation function to each key's values
 
 ### Joins
+
 - `Join(inner, resultSelector)` - Performs an inner join between lookups
 - `Zip(other, resultSelector)` - Combines corresponding elements from both lookups
 
 ### Conversions
+
 - `ToDictionary()` - Converts lookup to `Dictionary<TKey, List<TValue>>`
 - `ToLookup()` - Extension for `IEnumerable<IGrouping>` and dictionaries
 
 ### Utilities
+
 - `Lookup.Empty<TKey, TValue>()` - Creates an empty lookup (singleton)
 - `Lookup.Builder` - Fluent builder for creating lookups
 
@@ -115,9 +121,13 @@ var backToDict = lookup.ToDictionary();
 
 ## Inspiration and Acknowledgments
 
-This library was inspired by the original [NOtherLookup](https://github.com/NOtherDev/NOtherLookup) project by [NOtherDev](https://github.com/NOtherDev). Special thanks to the author for the foundational concepts and the excellent blog post: ["NOtherLookup - even better lookups"](https://notherdev.blogspot.com/2014/01/NOtherLookup-even-better-lookups.html).
+This library was inspired by the original [NOtherLookup](https://github.com/NOtherDev/NOtherLookup) project
+by [NOtherDev](https://github.com/NOtherDev). Special thanks to the author for the foundational concepts and the
+excellent blog
+post: ["NOtherLookup - even better lookups"](https://notherdev.blogspot.com/2014/01/NOtherLookup-even-better-lookups.html).
 
 While maintaining compatibility with modern .NET versions, this library builds upon those original ideas with:
+
 - Multi-framework support (.NET Framework 4.8 through .NET 9)
 - Enhanced builder pattern
 - Improved test coverage
@@ -126,16 +136,21 @@ While maintaining compatibility with modern .NET versions, this library builds u
 ## Comparison with Other Libraries
 
 ### vs. MoreLinq
-[MoreLinq](https://github.com/morelinq/MoreLinq) is an excellent general-purpose LINQ extension library, but it focuses primarily on `IEnumerable<T>` operations rather than `ILookup<TKey, TValue>` specifically. Key differences:
+
+[MoreLinq](https://github.com/morelinq/MoreLinq) is an excellent general-purpose LINQ extension library, but it focuses
+primarily on `IEnumerable<T>` operations rather than `ILookup<TKey, TValue>` specifically. Key differences:
 
 - **MoreLinq**: Provides 100+ general LINQ operators for sequences
 - **Orionde.MoreLookup**: Specialized for lookup/grouping operations with set theory methods
 
 **Use MoreLinq when**: You need general sequence operations  
-**Use Orionde.MoreLookup when**: You're working extensively with lookups and need operations like Union, Intersect, Except on grouped data
+**Use Orionde.MoreLookup when**: You're working extensively with lookups and need operations like Union, Intersect,
+Except on grouped data
 
 ### Unique Value Proposition
+
 This library fills a specific gap by providing:
+
 - Set operations specifically for `ILookup<TKey, TValue>`
 - Fluent builder pattern for lookup construction
 - Dictionary-to-Lookup conversion utilities
