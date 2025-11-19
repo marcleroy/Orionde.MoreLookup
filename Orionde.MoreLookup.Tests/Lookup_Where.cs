@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Xunit;
-using Orionde.MoreLookup;
-using Tests.Utils;
+
 using FluentAssertions;
+
+using Orionde.MoreLookup;
+
+using Tests.Utils;
+
+using Xunit;
 
 namespace Tests
 {
@@ -35,7 +39,7 @@ namespace Tests
                 .WithKey("b", new[] { 2, 4 }).Build();
 
             // Act
-            var filtered = from x in lookup 
+            var filtered = from x in lookup
                            where x > 3
                            select x;
 

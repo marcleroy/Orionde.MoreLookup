@@ -1,10 +1,14 @@
-using System.Linq;
-using System.Collections.Generic;
 using System;
-using Xunit;
-using Orionde.MoreLookup;
-using Tests.Utils;
+using System.Collections.Generic;
+using System.Linq;
+
 using FluentAssertions;
+
+using Orionde.MoreLookup;
+
+using Tests.Utils;
+
+using Xunit;
 
 namespace Tests
 {
@@ -29,7 +33,7 @@ namespace Tests
             concatenated[2].ShouldContainExactly("c", "d", "e");
             concatenated[3].ShouldContainExactly("f", "g");
         }
-        
+
         [Fact]
         public void When_unionizing_lookups_with_key_comparer_should_respect_comparer()
         {

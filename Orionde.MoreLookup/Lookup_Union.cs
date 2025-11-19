@@ -1,7 +1,7 @@
+using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using System.Collections.Generic;
-using System;
 
 namespace Orionde.MoreLookup
 {
@@ -21,7 +21,7 @@ namespace Orionde.MoreLookup
         /// <exception cref="ArgumentNullException"><paramref name="first"/> is <c>null</c>.</exception>
         [Pure]
         public static ILookup<TKey, TValue> Union<TKey, TValue>(
-            this ILookup<TKey, TValue> first, ILookup<TKey, TValue> second, 
+            this ILookup<TKey, TValue> first, ILookup<TKey, TValue> second,
             IEqualityComparer<TKey> keyComparer = null, IEqualityComparer<TValue> valueComparer = null)
         {
             if (first == null)
@@ -31,7 +31,7 @@ namespace Orionde.MoreLookup
         }
 
         private static IEnumerable<KeyValuePair<TKey, IEnumerable<TValue>>> UnionImpl<TKey, TValue>(
-            ILookup<TKey, TValue> first, ILookup<TKey, TValue> second, 
+            ILookup<TKey, TValue> first, ILookup<TKey, TValue> second,
             IEqualityComparer<TKey> keyComparer, IEqualityComparer<TValue> valueComparer)
         {
             var firstKeys = first.Keys(keyComparer);

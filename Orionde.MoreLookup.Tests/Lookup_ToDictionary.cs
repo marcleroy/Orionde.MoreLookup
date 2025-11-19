@@ -1,10 +1,14 @@
-using System.Linq;
-using System.Collections.Generic;
 using System;
-using Xunit;
-using Orionde.MoreLookup;
-using Tests.Utils;
+using System.Collections.Generic;
+using System.Linq;
+
 using FluentAssertions;
+
+using Orionde.MoreLookup;
+
+using Tests.Utils;
+
+using Xunit;
 
 namespace Tests
 {
@@ -26,7 +30,7 @@ namespace Tests
             dictionary[1].ShouldContainExactly("a", "b");
             dictionary[2].ShouldContainExactly("c", "d");
         }
-        
+
         [Fact]
         public void When_converting_lookup_to_IDictionary_with_comparer_should_respect_comparer()
         {

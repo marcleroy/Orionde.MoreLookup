@@ -36,8 +36,8 @@ namespace Tests
                 .WithKey("b", new[] { 2, 4 }).Build();
 
             // Act
-            var projected = from x in lookup 
-                           select x + "!";
+            var projected = from x in lookup
+                            select x + "!";
 
             // Assert
             projected.Count.Should().Be(2);

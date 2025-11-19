@@ -1,10 +1,14 @@
-using System.Linq;
-using System.Collections.Generic;
 using System;
-using Xunit;
-using Orionde.MoreLookup;
-using Tests.Utils;
+using System.Collections.Generic;
+using System.Linq;
+
 using FluentAssertions;
+
+using Orionde.MoreLookup;
+
+using Tests.Utils;
+
+using Xunit;
 
 namespace Tests
 {
@@ -26,7 +30,7 @@ namespace Tests
             lookup["a"].ShouldContainExactly(1, 3);
             lookup["b"].ShouldContainExactly(2, 4);
         }
-        
+
         [Fact]
         public void When_converting_IEnumerable_of_IGrouping_to_lookup_with_comparer_should_respect_comparer()
         {
@@ -43,7 +47,7 @@ namespace Tests
             lookup["a"].ShouldContainExactly(1, 3, 2, 4);
             lookup["b"].ShouldContainExactly(1, 3, 2, 4);
         }
-        
+
         [Fact]
         public void When_converting_null_IEnumerable_of_IGrouping_to_lookup_should_throw_ArgumentNullException()
         {

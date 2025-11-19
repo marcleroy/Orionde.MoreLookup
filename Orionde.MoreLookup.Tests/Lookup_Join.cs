@@ -1,10 +1,14 @@
-using System.Linq;
-using System.Collections.Generic;
 using System;
-using Xunit;
-using Orionde.MoreLookup;
-using Tests.Utils;
+using System.Collections.Generic;
+using System.Linq;
+
 using FluentAssertions;
+
+using Orionde.MoreLookup;
+
+using Tests.Utils;
+
+using Xunit;
 
 namespace Tests
 {
@@ -27,7 +31,7 @@ namespace Tests
             joined.Single().Key.Should().Be(2);
             joined[2].ShouldContainExactly("3e", "3d", "4e", "4d", "4e", "4d");
         }
-        
+
         [Fact]
         public void When_joining_lookups_with_key_comparer_should_respect_comparer()
         {
@@ -83,7 +87,7 @@ namespace Tests
             // Act & Assert
             var exception = Assert.Throws<ArgumentNullException>(() => lookup.Join(Lookup.Builder
                 .WithKey(2, new[] { "e", "d" })
-                .WithKey(3, new[] { "f", "g" }).Build(), (Func<int, string, string>) null));
+                .WithKey(3, new[] { "f", "g" }).Build(), (Func<int, string, string>)null));
             exception.Should().BeOfType<ArgumentNullException>();
         }
     }

@@ -1,10 +1,14 @@
-using System.Linq;
-using System.Collections.Generic;
 using System;
-using Xunit;
-using Orionde.MoreLookup;
-using Tests.Utils;
+using System.Collections.Generic;
+using System.Linq;
+
 using FluentAssertions;
+
+using Orionde.MoreLookup;
+
+using Tests.Utils;
+
+using Xunit;
 
 namespace Tests
 {

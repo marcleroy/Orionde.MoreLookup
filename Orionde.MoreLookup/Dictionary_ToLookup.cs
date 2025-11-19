@@ -1,7 +1,7 @@
+using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using System.Collections.Generic;
-using System;
 
 namespace Orionde.MoreLookup
 {
@@ -68,8 +68,8 @@ namespace Orionde.MoreLookup
         public static ILookup<TKey, TValue> ToLookup<TKey, TValue>(this IDictionary<TKey, TValue[]> dictionary, IEqualityComparer<TKey> comparer = null)
         {
             return dictionary.ToLookup<TKey, TValue[], TValue>(comparer);
-        } 
-        
+        }
+
         internal static ILookup<TKey, TValue> ToLookup<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, IEnumerable<TValue>>> dictionary, IEqualityComparer<TKey> comparer = null)
         {
             return dictionary.ToLookup<TKey, IEnumerable<TValue>, TValue>(comparer);

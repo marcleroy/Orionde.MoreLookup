@@ -1,10 +1,14 @@
-using System.Linq;
-using System.Collections.Generic;
 using System;
-using Xunit;
-using Orionde.MoreLookup;
-using Tests.Utils;
+using System.Collections.Generic;
+using System.Linq;
+
 using FluentAssertions;
+
+using Orionde.MoreLookup;
+
+using Tests.Utils;
+
+using Xunit;
 
 namespace Tests
 {
@@ -83,7 +87,7 @@ namespace Tests
             // Act & Assert
             var exception = Assert.Throws<ArgumentNullException>(() => lookup.Zip(Lookup.Builder
                 .WithKey(2, new[] { "e", "d" })
-                .WithKey(3, new[] { "f", "g" }).Build(), (Func<int, string, string>) null));
+                .WithKey(3, new[] { "f", "g" }).Build(), (Func<int, string, string>)null));
             exception.Should().BeOfType<ArgumentNullException>();
         }
     }

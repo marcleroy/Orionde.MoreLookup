@@ -1,6 +1,6 @@
-using System.Linq;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Orionde.MoreLookup
 {
@@ -39,7 +39,7 @@ namespace Orionde.MoreLookup
             {
                 return new LookupBuilder<TKey, TValue>(EqualityComparer<TKey>.Default).WithKey(key, values);
             }
-            
+
             /// <summary>
             /// Specifies a custom equality comparer for keys in the lookup being built.
             /// </summary>
@@ -90,7 +90,7 @@ namespace Orionde.MoreLookup
         public class LookupBuilder<TKey, TValue>
         {
             private readonly Dictionary<TKey, IEnumerable<TValue>> _data;
-            
+
             private bool _hasNullKey;
             private TKey _firstAppearedNullKey;
             private IEnumerable<TValue> _valuesForNullKey;
@@ -131,7 +131,7 @@ namespace Orionde.MoreLookup
 
                 return this;
             }
-            
+
             /// <summary>
             /// Builds the final <see cref="ILookup{TKey, TValue}"/> instance from the accumulated key-value pairs.
             /// </summary>

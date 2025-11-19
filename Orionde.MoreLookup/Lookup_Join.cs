@@ -1,7 +1,7 @@
+using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using System.Collections.Generic;
-using System;
 
 namespace Orionde.MoreLookup
 {
@@ -23,7 +23,7 @@ namespace Orionde.MoreLookup
         /// <exception cref="ArgumentNullException"><paramref name="outer"/>, <paramref name="inner"/>, or <paramref name="resultSelector"/> is <c>null</c>.</exception>
         [Pure]
         public static ILookup<TKey, TResult> Join<TKey, TOuter, TInner, TResult>(
-            this ILookup<TKey, TOuter> outer, ILookup<TKey, TInner> inner, 
+            this ILookup<TKey, TOuter> outer, ILookup<TKey, TInner> inner,
             Func<TOuter, TInner, TResult> resultSelector, IEqualityComparer<TKey> keyComparer = null)
         {
             if (outer == null)

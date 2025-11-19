@@ -1,7 +1,7 @@
+using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
-using System.Collections.Generic;
-using System;
 
 namespace Orionde.MoreLookup
 {
@@ -23,7 +23,7 @@ namespace Orionde.MoreLookup
         /// <exception cref="ArgumentNullException"><paramref name="first"/>, <paramref name="second"/>, or <paramref name="resultSelector"/> is <c>null</c>.</exception>
         [Pure]
         public static ILookup<TKey, TResult> Zip<TKey, TFirst, TSecond, TResult>(
-            this ILookup<TKey, TFirst> first, ILookup<TKey, TSecond> second, 
+            this ILookup<TKey, TFirst> first, ILookup<TKey, TSecond> second,
             Func<TFirst, TSecond, TResult> resultSelector, IEqualityComparer<TKey> keyComparer = null)
         {
             if (first == null)
