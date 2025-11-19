@@ -16,7 +16,7 @@ namespace Orionde.MoreLookup
             return EmptyHolder<TKey, TValue>.Instance;
         }
 
-        private class EmptyHolder<TKey, TValue>
+        private static class EmptyHolder<TKey, TValue>
         {
             public static readonly ILookup<TKey, TValue> Instance =
                 Enumerable.Empty<int>().ToLookup(x => default(TKey), x => default(TValue));
