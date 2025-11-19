@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,10 +12,7 @@ namespace Orionde.MoreLookup
         /// Gets a builder instance for fluently constructing <see cref="ILookup{TKey, TValue}"/> objects.
         /// </summary>
         /// <value>A new <see cref="LookupBuilder"/> instance.</value>
-        public static LookupBuilder Builder
-        {
-            get { return new LookupBuilder(); }
-        }
+        public static LookupBuilder Builder => new LookupBuilder();
 
         /// <summary>
         /// Provides a fluent interface for building <see cref="ILookup{TKey, TValue}"/> instances.
