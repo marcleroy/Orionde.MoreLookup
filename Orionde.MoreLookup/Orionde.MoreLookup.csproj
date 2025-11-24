@@ -18,7 +18,7 @@
 
         <!-- Package metadata -->
         <PackageId>Orionde.MoreLookup</PackageId>
-        <Version>0.9.0-beta</Version>
+        <Version>0.9.1-beta</Version>
         <Title>Orionde.MoreLookup</Title>
         <Description>A powerful LINQ extension library that enhances ILookup with additional operations like Union, Intersect, Except, Join, Zip, and more. Includes fluent builder pattern and support for custom comparers.</Description>
         <Authors>Marc Leroy</Authors>
@@ -29,11 +29,17 @@
         <PackageProjectUrl>https://github.com/marcleroy/Orionde.MoreLookup</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <!-- <PackageIcon>icon.png</PackageIcon> -->
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageIcon>icon.png</PackageIcon> 
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright © 2025 Orionde</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
         <Summary>A simple yet powerful LINQ extension for working with Lookup collections.</Summary>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 
         <!-- Additional metadata for better NuGet experience -->
         <PackageReleaseNotes>Beta release with comprehensive ILookup extensions. Includes Union, Intersect, Except, Join, Zip, Select, Where operations plus fluent builder pattern.</PackageReleaseNotes>
@@ -42,8 +48,14 @@
 
     <ItemGroup>
         <!-- Specify files like the license and readme -->
-        <None Include="LICENSE.txt" Pack="true" PackagePath="" />
-        <None Include="README.md" Pack="true" PackagePath="" />
+        <None Include="LICENSE.txt" Pack="true" PackagePath="\" />
+        <None Include="README.md" Pack="true" PackagePath="\" />
+        <None Include="icon.png" Pack="true" PackagePath="\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- SourceLink support for debugging -->
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     </ItemGroup>
 
 </Project>

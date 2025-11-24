@@ -1,5 +1,10 @@
 # Orionde.MoreLookup
 
+[![NuGet Version](https://img.shields.io/nuget/v/Orionde.MoreLookup.svg)](https://www.nuget.org/packages/Orionde.MoreLookup/)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/Orionde.MoreLookup.svg)](https://www.nuget.org/packages/Orionde.MoreLookup/)
+[![Build Status](https://github.com/marcleroy/Orionde.MoreLookup/workflows/CI%20Build%20and%20Test/badge.svg)](https://github.com/marcleroy/Orionde.MoreLookup/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.txt)
+
 A powerful LINQ extension library that enhances `ILookup<TKey, TValue>` with additional operations like Union,
 Intersect, Except, Join, Zip, and more.
 

@@ -35,7 +35,7 @@ public class LookupSelectTests
 
         // Act
         ILookup<string, string> projected = from x in lookup
-            select x + "!";
+                                            select x + "!";
 
         // Assert
         projected.Count.Should().Be(2);

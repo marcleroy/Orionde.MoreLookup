@@ -34,8 +34,8 @@ public class LookupWhereTests
 
         // Act
         ILookup<string, int> filtered = from x in lookup
-            where x > 3
-            select x;
+                                        where x > 3
+                                        select x;
 
         // Assert
         filtered.Count.Should().Be(1);
