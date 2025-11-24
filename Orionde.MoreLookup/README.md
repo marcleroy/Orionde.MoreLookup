@@ -1,7 +1,5 @@
 # Orionde.MoreLookup
 
-<div align="center">
-
 [![NuGet Version](https://img.shields.io/nuget/v/Orionde.MoreLookup.svg?style=flat-square&logo=nuget)](https://www.nuget.org/packages/Orionde.MoreLookup/)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/Orionde.MoreLookup.svg?style=flat-square&logo=nuget)](https://www.nuget.org/packages/Orionde.MoreLookup/)
 [![CI Build](https://img.shields.io/github/actions/workflow/status/marcleroy/Orionde.MoreLookup/ci.yml?branch=main&style=flat-square&logo=github&label=CI%20Build)](https://github.com/marcleroy/Orionde.MoreLookup/actions/workflows/ci.yml)
@@ -13,8 +11,6 @@
 [![.NET 6](https://img.shields.io/badge/.NET-6-512BD4?style=flat-square&logo=dotnet)](https://dotnet.microsoft.com/)
 [![.NET Framework 4.8](https://img.shields.io/badge/.NET%20Framework-4.8-512BD4?style=flat-square&logo=dotnet)](https://dotnet.microsoft.com/)
 [![.NET Standard 2.0](https://img.shields.io/badge/.NET%20Standard-2.0-512BD4?style=flat-square&logo=dotnet)](https://dotnet.microsoft.com/)
-
-</div>
 
 ---
 
