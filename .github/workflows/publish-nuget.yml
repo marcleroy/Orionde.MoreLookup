@@ -1,0 +1,61 @@
+name: Publish to NuGet
+
+on:
+  push:
+    tags:
+      - 'v*' # Triggers on version tags like v0.9.0-beta, v1.0.0, etc.
+  workflow_dispatch: # Allows manual trigger from GitHub Actions UI
+
+jobs:
+  build-and-publish:
+    runs-on: windows-latest
+    environment: ProdDeploy # Uses your environment with NUGET_API_KEY secret
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 # Full history for proper versioning
+    
+    - name: Setup .NET 9.0
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+    
+    - name: Setup .NET 8.0
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+    
+    - name: Setup .NET 7.0
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '7.0.x'
+    
+    - name: Setup .NET 6.0
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '6.0.x'
+    
+    # .NET Framework 4.8 is included with windows-latest runner
+    
+    - name: Restore dependencies
+      run: dotnet restore
+    
+    - name: Build solution
+      run: dotnet build --configuration Release --no-restore
+    
+    - name: Run tests
+      run: dotnet test --configuration Release --no-build --verbosity normal
+    
+    - name: Pack NuGet package
+      run: dotnet pack Orionde.MoreLookup\Orionde.MoreLookup.csproj --configuration Release --no-build --output ./nupkg
+    
+    - name: Publish to NuGet.org
+      run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+    
+    - name: Upload NuGet package as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: nuget-package
+        path: ./nupkg/*.nupkg

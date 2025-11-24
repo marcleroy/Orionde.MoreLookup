@@ -31,7 +31,7 @@
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <!-- <PackageIcon>icon.png</PackageIcon> -->
         <RepositoryType>git</RepositoryType>
-        <Copyright>Copyright © 2024 Orionde</Copyright>
+        <Copyright>Copyright © 2025 Orionde</Copyright>
         <NeutralLanguage>en</NeutralLanguage>
         <Summary>A simple yet powerful LINQ extension for working with Lookup collections.</Summary>
 
@@ -42,8 +42,8 @@
 
     <ItemGroup>
         <!-- Specify files like the license and readme -->
-        <None Include="LICENSE.txt" Pack="true" PackagePath=""/>
-        <None Include="README.md" Pack="true" PackagePath=""/>
+        <None Include="LICENSE.txt" Pack="true" PackagePath="" />
+        <None Include="README.md" Pack="true" PackagePath="" />
     </ItemGroup>
 
 </Project>
