@@ -49,13 +49,13 @@ jobs:
       run: dotnet test --configuration Release --no-build --verbosity normal
     
     - name: Pack NuGet package
-      run: dotnet pack Orionde.MoreLookup\Orionde.MoreLookup.csproj --configuration Release --no-build --output ./nupkg
+      run: dotnet pack Orionde.MoreLookup\Orionde.MoreLookup.csproj --configuration Release --no-build --output nupkg
     
     - name: Publish to NuGet.org
-      run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      run: dotnet nuget push nupkg\*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
     
     - name: Upload NuGet package as artifact
       uses: actions/upload-artifact@v4
       with:
         name: nuget-package
-        path: ./nupkg/*.nupkg
+        path: nupkg\*.nupkg
