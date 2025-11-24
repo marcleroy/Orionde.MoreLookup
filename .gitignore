@@ -146,7 +146,6 @@ _TeamCity*
 
 # AxoCover is a Code Coverage Tool
 .axoCover/*
-!.axoCover/settings.json
 
 # Coverlet is a free, cross platform Code Coverage Tool
 coverage*.json
@@ -482,9 +481,9 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
-/PUBLISHING.md
-/MoreLookup_Icon2.png
-/MoreLookup_Icon_32.png
-/Orionde.MoreLookup/ICON_GUIDE.md
-/PRE_PUBLISH_CHECKLIST.md
-/SETUP_COMPLETE.md
+
+# Local documentation folder (not for GitHub)
+/docs/
+
+# Temporary/local markdown files
+*.local.md

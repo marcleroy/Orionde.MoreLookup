@@ -1,4 +1,4 @@
-# Security Policy
+﻿# Security Policy
 
 ## Supported Versions
 
@@ -66,3 +66,4 @@ This security policy applies to:
 ## Contact
 
 For security concerns, please use GitHub Security Advisories or contact the maintainers directly.
+

@@ -1,4 +1,4 @@
-# Orionde.MoreLookup
+﻿# Orionde.MoreLookup
 
 A powerful LINQ extension library that enhances `ILookup<TKey, TValue>` with additional operations like Union, Intersect, Except, Join, Zip, and more.
 

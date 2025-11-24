@@ -18,7 +18,7 @@
 
         <!-- Package metadata -->
         <PackageId>Orionde.MoreLookup</PackageId>
-        <Version>0.9.1-beta</Version>
+        <Version>1.0.0-rc1</Version>
         <Title>Orionde.MoreLookup</Title>
         <Description>A powerful LINQ extension library that enhances ILookup with additional operations like Union, Intersect, Except, Join, Zip, and more. Includes fluent builder pattern and support for custom comparers.</Description>
         <Authors>Marc Leroy</Authors>
@@ -42,7 +42,7 @@
         <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 
         <!-- Additional metadata for better NuGet experience -->
-        <PackageReleaseNotes>Beta release with comprehensive ILookup extensions. Includes Union, Intersect, Except, Join, Zip, Select, Where operations plus fluent builder pattern.</PackageReleaseNotes>
+        <PackageReleaseNotes>Release ca 1.0.0-rc1 with comprehensive ILookup extensions. Includes Union, Intersect, Except, Join, Zip, Select, Where operations plus fluent builder pattern.</PackageReleaseNotes>
         <MinClientVersion>3.3.0</MinClientVersion>
     </PropertyGroup>
 

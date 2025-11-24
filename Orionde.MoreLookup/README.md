@@ -1,9 +1,22 @@
 # Orionde.MoreLookup
 
-[![NuGet Version](https://img.shields.io/nuget/v/Orionde.MoreLookup.svg)](https://www.nuget.org/packages/Orionde.MoreLookup/)
-[![NuGet Downloads](https://img.shields.io/nuget/dt/Orionde.MoreLookup.svg)](https://www.nuget.org/packages/Orionde.MoreLookup/)
-[![Build Status](https://github.com/marcleroy/Orionde.MoreLookup/workflows/CI%20Build%20and%20Test/badge.svg)](https://github.com/marcleroy/Orionde.MoreLookup/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.txt)
+<div align="center">
+
+[![NuGet Version](https://img.shields.io/nuget/v/Orionde.MoreLookup.svg?style=flat-square&logo=nuget)](https://www.nuget.org/packages/Orionde.MoreLookup/)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/Orionde.MoreLookup.svg?style=flat-square&logo=nuget)](https://www.nuget.org/packages/Orionde.MoreLookup/)
+[![CI Build](https://img.shields.io/github/actions/workflow/status/marcleroy/Orionde.MoreLookup/ci.yml?branch=main&style=flat-square&logo=github&label=CI%20Build)](https://github.com/marcleroy/Orionde.MoreLookup/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE.txt)
+
+[![.NET 9](https://img.shields.io/badge/.NET-9-512BD4?style=flat-square&logo=dotnet)](https://dotnet.microsoft.com/)
+[![.NET 8](https://img.shields.io/badge/.NET-8-512BD4?style=flat-square&logo=dotnet)](https://dotnet.microsoft.com/)
+[![.NET 7](https://img.shields.io/badge/.NET-7-512BD4?style=flat-square&logo=dotnet)](https://dotnet.microsoft.com/)
+[![.NET 6](https://img.shields.io/badge/.NET-6-512BD4?style=flat-square&logo=dotnet)](https://dotnet.microsoft.com/)
+[![.NET Framework 4.8](https://img.shields.io/badge/.NET%20Framework-4.8-512BD4?style=flat-square&logo=dotnet)](https://dotnet.microsoft.com/)
+[![.NET Standard 2.0](https://img.shields.io/badge/.NET%20Standard-2.0-512BD4?style=flat-square&logo=dotnet)](https://dotnet.microsoft.com/)
+
+</div>
+
+---
 
 A powerful LINQ extension library that enhances `ILookup<TKey, TValue>` with additional operations like Union,
 Intersect, Except, Join, Zip, and more.

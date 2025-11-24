@@ -1,4 +1,4 @@
-# Contributing to Orionde.MoreLookup
+﻿# Contributing to Orionde.MoreLookup
 
 Thank you for considering contributing to Orionde.MoreLookup! We welcome contributions from the community.
 
@@ -114,12 +114,19 @@ When adding new features:
 
 ### Release Process
 
-Releases are managed by maintainers:
+Releases are managed by maintainers. See the [Publishing Workflows Guide](../docs/WORKFLOWS_GUIDE.md) for detailed instructions.
+
+Quick overview:
 
 1. Update version in `.csproj`
 2. Update `CHANGELOG.md` with release date
 3. Create release tag (`v1.0.0`)
 4. GitHub Actions automatically publishes to NuGet
+
+For more details, see:
+- **Quick Reference**: `docs/QUICK_REFERENCE.md`
+- **Complete Guide**: `docs/WORKFLOWS_GUIDE.md`
+- **Pre-Publish Checklist**: `docs/PRE_PUBLISH_CHECKLIST.md`
 
 ## Code of Conduct
 
@@ -133,3 +140,4 @@ Feel free to open an issue with the `question` label or start a discussion in Gi
 ## License
 
 By contributing, you agree that your contributions will be licensed under the MIT License.
+
