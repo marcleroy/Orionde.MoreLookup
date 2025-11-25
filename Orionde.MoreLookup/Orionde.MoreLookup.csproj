@@ -51,6 +51,7 @@
         <None Include="LICENSE.txt" Pack="true" PackagePath="\" />
         <None Include="README.md" Pack="true" PackagePath="\" />
         <None Include="icon.png" Pack="true" PackagePath="\" />
+        <None Include="X:\Projects\Orionde.MoreLookup\README.md" Link="README.md" />
     </ItemGroup>
 
     <ItemGroup>
