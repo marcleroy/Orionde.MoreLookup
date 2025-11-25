@@ -487,3 +487,6 @@ $RECYCLE.BIN/
 
 # Temporary/local markdown files
 *.local.md
+
+# Generated package README (created during CI only)
+Orionde.MoreLookup/README.nupkg.md

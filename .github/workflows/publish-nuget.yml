@@ -1,4 +1,4 @@
-name: Publish to NuGet
+﻿name: Publish to NuGet
 
 on:
   push:
@@ -53,6 +53,22 @@ jobs:
     
     - name: Run tests
       run: dotnet test --configuration Release --no-build --verbosity normal
+    
+    - name: Generate package README
+      shell: pwsh
+      run: |
+        Write-Host "Generating package README for NuGet..." -ForegroundColor Cyan
+        $source = "README.md"
+        $dest = "Orionde.MoreLookup\README.nupkg.md"
+        
+        if (Test-Path $source) {
+          # Copy repo README as package README with UTF-8 encoding
+          Get-Content $source -Raw -Encoding UTF8 | Out-File -FilePath $dest -Encoding UTF8 -NoNewline
+          Write-Host "✓ Package README created: $dest" -ForegroundColor Green
+        } else {
+          Write-Host "✗ Source README not found: $source" -ForegroundColor Red
+          exit 1
+        }
     
     - name: Pack NuGet package
       run: dotnet pack Orionde.MoreLookup\Orionde.MoreLookup.csproj --configuration Release --no-build --output nupkg

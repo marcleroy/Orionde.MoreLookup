@@ -29,7 +29,8 @@
         <PackageProjectUrl>https://github.com/marcleroy/Orionde.MoreLookup</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <!-- Package README: generated during CI, optional for local builds -->
+        <PackageReadmeFile Condition="Exists('README.nupkg.md')">README.nupkg.md</PackageReadmeFile>
         <PackageIcon>icon.png</PackageIcon> 
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright © 2025 Orionde</Copyright>
@@ -49,9 +50,8 @@
     <ItemGroup>
         <!-- Specify files like the license and readme -->
         <None Include="LICENSE.txt" Pack="true" PackagePath="\" />
-        <None Include="README.md" Pack="true" PackagePath="\" />
+        <None Include="README.nupkg.md" Pack="true" PackagePath="\" Condition="Exists('README.nupkg.md')" />
         <None Include="icon.png" Pack="true" PackagePath="\" />
-        <None Include="X:\Projects\Orionde.MoreLookup\README.md" Link="README.md" />
     </ItemGroup>
 
     <ItemGroup>
