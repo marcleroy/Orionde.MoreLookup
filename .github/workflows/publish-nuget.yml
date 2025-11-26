@@ -15,7 +15,7 @@ on:
 jobs:
   build-and-publish:
     runs-on: windows-latest
-    environment: ProdDeploy # Uses your environment with NUGET_API_KEY secret
+    environment: production # Uses your environment with NUGET_API_KEY secret
     
     steps:
     - name: Checkout code
