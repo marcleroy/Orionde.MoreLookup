@@ -485,6 +485,9 @@ $RECYCLE.BIN/
 # Local documentation folder (not for GitHub)
 /docs/
 
+# Local scripts folder (not for GitHub)
+/scripts/
+
 # Temporary/local markdown files
 *.local.md
 
